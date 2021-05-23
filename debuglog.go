@@ -52,7 +52,7 @@ func logStr(v interface{}, mid string, name ...string) string {
 func print(s string) {
 	function, file, line, _ := runtime.Caller(2)
 	funcName := runtime.FuncForPC(function).Name()
-	logger.Printf("%s:%d %s %s", short(file), line, short(funcName), s)
+	logger.Printf("%s:%d %s: %s", short(file), line, short(funcName), s)
 }
 
 // 打印一个值
