@@ -42,9 +42,9 @@ func short(s string) string {
 	return short
 }
 
-func logStr(v interface{}, mid string, prefix ...string) string {
-	if len(prefix) > 0 {
-		return fmt.Sprintf("%+v%s%+v\n", prefix, mid, v)
+func logStr(v interface{}, mid string, name ...string) string {
+	if len(name) > 0 {
+		return fmt.Sprintf("%+v%s%+v\n", name, mid, v)
 	}
 	return fmt.Sprintf("%+v\n", v)
 }
@@ -56,37 +56,37 @@ func print(s string) {
 }
 
 // 打印一个值
-func Val(v interface{}, prefix ...string) {
-	print(logStr(v, " = ", prefix...))
+func Val(v interface{}, name ...string) {
+	print(logStr(v, " = ", name...))
 }
 
 // Spew 打印一个值
-func SpewVal(v interface{}, prefix ...string) {
+func SpewVal(v interface{}, name ...string) {
 	s := spew.Sdump(v)
-	print(logStr(s, " = ↙↙↙\n", prefix...))
+	print(logStr(s, " = ↙↙↙\n", name...))
 }
 
 // Spew 打印一个包含8进制utf-8字符串的值
-func OctUtf8Val(v interface{}, prefix ...string) {
+func OctUtf8Val(v interface{}, name ...string) {
 	str := spew.Sdump(v)
 	s := convertOctonaryUtf8(str)
-	print(logStr(s, " = ↙↙↙\n", prefix...))
+	print(logStr(s, " = ↙↙↙\n", name...))
 }
 
 // 转换成json后打印
-func ToJson(v interface{}, prefix ...string) {
+func ToJson(v interface{}, name ...string) {
 	jsonData, err := json.Marshal(v)
 	if err != nil {
-		print(logStr(fmt.Sprintf("Print json val err: %s\n", err), " ", prefix...))
+		print(logStr(fmt.Sprintf("Print json val err: %s\n", err), " ", name...))
 	}
-	print(logStr(string(jsonData), " = ", prefix...))
+	print(logStr(string(jsonData), " = ", name...))
 }
 
 // 转换成json后打印
-func ToJsonPretty(v interface{}, prefix ...string) {
+func ToJsonPretty(v interface{}, name ...string) {
 	jsonData, err := json.MarshalIndent(v, "", "    ")
 	if err != nil {
-		print(logStr(fmt.Sprintf("Print json val err: %s\n", err), " ", prefix...))
+		print(logStr(fmt.Sprintf("Print json val err: %s\n", err), " ", name...))
 	}
-	print(logStr(string(jsonData), " = ↙↙↙\n", prefix...))
+	print(logStr(string(jsonData), " = ↙↙↙\n", name...))
 }
