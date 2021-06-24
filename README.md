@@ -43,11 +43,11 @@ func main() {
 
 	testJson := TestJson{Id: 987, Name: "alan"}
 
-	debuglog.SpewVal(testJson, "testJson")
+	debuglog.SpewVal(testJson, "testJson Spew")
 	// debuglog.OctUtf8Val(testJson, "testJson")
 
 	debuglog.ToJson(testJson, "testJson")
-	debuglog.ToJsonPretty(testJson, "testJson")
+	debuglog.ToJsonPretty(testJson, "testJson Pretty")
 }
 ```
 
